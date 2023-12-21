@@ -1,3 +1,4 @@
 FROM python:3.11
 
-RUN pip install langchain
+RUN pip install langchain openai meilisearch python-dotenv
+
