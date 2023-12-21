@@ -3,6 +3,7 @@ FROM python:3.11
 
 # Change the default shell to /bin/sh
 SHELL ["/bin/sh", "-c"]
+RUN apk add --no-cache bash
 
 # Install the necessary packages
 RUN pip install langchain openai meilisearch python-dotenv
