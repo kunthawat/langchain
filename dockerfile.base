@@ -1,9 +1,18 @@
 FROM python:3.11
 
-RUN pip install langchain openai meilisearch python-dotenv
+FROM busybox:1.35.0-uclibc as busybox
 
 FROM gcr.io/distroless/base-debian11
 
-COPY --from=busybox:1.35.0-uclibc /bin/sh /bin/sh
+# Now copy the static shell into base image.
+COPY --from=busybox /bin/sh /bin/sh
+
+# You may also copy all necessary executables into distroless image.
+COPY --from=busybox /bin/mkdir /bin/mkdir
+COPY --from=busybox /bin/cat /bin/cat
 
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+
+RUN pip install langchain openai meilisearch python-dotenv
+
+
