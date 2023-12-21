@@ -2,3 +2,8 @@ FROM python:3.11
 
 RUN pip install langchain openai meilisearch python-dotenv
 
+FROM gcr.io/distroless/base-debian11
+
+COPY --from=busybox:1.35.0-uclibc /bin/sh /bin/sh
+
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
