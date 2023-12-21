@@ -12,8 +12,3 @@ COPY --from=busybox /bin/sh /bin/sh
 # You may also copy all necessary executables into distroless image.
 COPY --from=busybox /bin/mkdir /bin/mkdir
 COPY --from=busybox /bin/cat /bin/cat
-
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
-
-
-
